@@ -61,6 +61,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Hive Todo App',
       theme: ThemeData(
+        scaffoldBackgroundColor: const Color.fromARGB(255, 123, 97, 95),
         textTheme: const TextTheme(
           headline1: TextStyle(
             color: Colors.black,

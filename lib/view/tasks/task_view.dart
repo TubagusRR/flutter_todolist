@@ -141,7 +141,7 @@ class _TaskViewState extends State<TaskView> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFFc8e797),
         appBar: const MyAppBar(),
         body: SizedBox(
           width: double.infinity,
@@ -266,6 +266,11 @@ class _TaskViewState extends State<TaskView> {
           Container(
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.symmetric(horizontal: 16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.grey.shade300, width: 1),
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: ListTile(
               title: TextFormField(
                 controller: widget.taskControllerForTitle,
@@ -299,12 +304,18 @@ class _TaskViewState extends State<TaskView> {
           Container(
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.symmetric(horizontal: 16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.grey.shade300, width: 1),
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: ListTile(
               title: TextFormField(
                 controller: widget.taskControllerForSubtitle,
                 style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.bookmark_border, color: Colors.grey),
+                  prefixIcon:
+                      const Icon(Icons.bookmark_border, color: Colors.grey),
                   border: InputBorder.none,
                   counter: Container(),
                   hintText: MyString.addNote,

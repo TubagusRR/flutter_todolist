@@ -61,32 +61,34 @@ class _HomeViewState extends State<HomeView> {
           tasks.sort(((a, b) => a.createdAtDate.compareTo(b.createdAtDate)));
 
           return Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.red,
 
             /// Floating Action Button
             floatingActionButton: const FAB(),
 
             /// Body
             body: SliderDrawer(
-              isDraggable: false,
-              key: dKey,
-              animationDuration: 1000,
+                isDraggable: false,
+                key: dKey,
+                animationDuration: 1000,
 
-              /// My AppBar
-              appBar: MyAppBar(
-                drawerKey: dKey,
-              ),
+                /// My AppBar
+                appBar: MyAppBar(
+                  drawerKey: dKey,
+                ),
 
-              /// My Drawer Slider
-              slider: MySlider(),
+                /// My Drawer Slider
+                slider: MySlider(),
 
-              /// Main Body
-              child: _buildBody(
-                tasks,
-                base,
-                textTheme,
-              ),
-            ),
+                /// Main Body
+                child: Container(
+                  color: const Color(0xFFc8e797),
+                  child: _buildBody(
+                    tasks,
+                    base,
+                    textTheme,
+                  ),
+                )),
           );
         });
   }
@@ -115,7 +117,8 @@ class _HomeViewState extends State<HomeView> {
                   width: 25,
                   height: 25,
                   child: CircularProgressIndicator(
-                    valueColor: const AlwaysStoppedAnimation(MyColors.primaryColor),
+                    valueColor:
+                        const AlwaysStoppedAnimation(MyColors.primaryColor),
                     backgroundColor: Colors.grey,
                     value: checkDoneTask(tasks) / valueOfTheIndicator(tasks),
                   ),
@@ -262,8 +265,8 @@ class MySlider extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          Text("AmirHossein Bayat", style: textTheme.headline2),
-          Text("junior flutter dev", style: textTheme.headline3),
+          Text("Ahmad Taufik Rahman", style: textTheme.headline2),
+          Text("Mahasiswa Dharma Negara", style: textTheme.headline3),
           Container(
             margin: const EdgeInsets.symmetric(
               vertical: 30,
@@ -304,7 +307,8 @@ class MySlider extends StatelessWidget {
 
 /// My App Bar
 class MyAppBar extends StatefulWidget with PreferredSizeWidget {
-  MyAppBar({Key? key, 
+  MyAppBar({
+    Key? key,
     required this.drawerKey,
   }) : super(key: key);
   GlobalKey<SliderDrawerState> drawerKey;
@@ -354,48 +358,50 @@ class _MyAppBarState extends State<MyAppBar>
   @override
   Widget build(BuildContext context) {
     var base = BaseWidget.of(context).dataStore.box;
-    return SizedBox(
-      width: double.infinity,
-      height: 132,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            /// Animated Icon - Menu & Close
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: IconButton(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  icon: AnimatedIcon(
-                    icon: AnimatedIcons.menu_close,
-                    progress: controller,
-                    size: 40,
-                  ),
-                  onPressed: toggle),
-            ),
-
-            /// Delete Icon
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: GestureDetector(
-                onTap: () {
-                  base.isEmpty
-                      ? warningNoTask(context)
-                      : deleteAllTask(context);
-                },
-                child: const Icon(
-                  CupertinoIcons.trash,
-                  size: 40,
+    return Container(
+        color: const Color(0xFFc8e797),
+        child: SizedBox(
+          width: double.infinity,
+          height: 132,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                /// Animated Icon - Menu & Close
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: IconButton(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      icon: AnimatedIcon(
+                        icon: AnimatedIcons.menu_close,
+                        progress: controller,
+                        size: 40,
+                      ),
+                      onPressed: toggle),
                 ),
-              ),
+
+                /// Delete Icon
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: GestureDetector(
+                    onTap: () {
+                      base.isEmpty
+                          ? warningNoTask(context)
+                          : deleteAllTask(context);
+                    },
+                    child: const Icon(
+                      CupertinoIcons.trash,
+                      size: 40,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }
 
